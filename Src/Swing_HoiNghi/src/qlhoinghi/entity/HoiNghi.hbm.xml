@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2020 3:16:51 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="qlhoinghi.entity.HoiNghi" table="hoi_nghi" catalog="qlhoinghi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="diaDiem" class="qlhoinghi.entity.DiaDiem" fetch="select">
+            <column name="dia_diem" not-null="true" />
+        </many-to-one>
+        <property name="ten" type="string">
+            <column name="ten" length="45" not-null="true" />
+        </property>
+        <property name="moTaNgan" type="string">
+            <column name="mo_ta_ngan" not-null="true" />
+        </property>
+        <property name="moTaDai" type="string">
+            <column name="mo_ta_dai" length="1000" not-null="true" />
+        </property>
+        <property name="hinhAnh" type="string">
+            <column name="hinh_anh" length="65535" not-null="true" />
+        </property>
+        <property name="thoiGianBatDau" type="timestamp">
+            <column name="thoi_gian_bat_dau" length="19" not-null="true" />
+        </property>
+        <property name="thoiGianKetThuc" type="timestamp">
+            <column name="thoi_gian_ket_thuc" length="19" not-null="true" />
+        </property>
+        <property name="soNguoiThamDu" type="int">
+            <column name="so_nguoi_tham_du" not-null="true" />
+        </property>
+        <set name="yeuCaus" table="yeu_cau" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_hn" not-null="true" />
+            </key>
+            <one-to-many class="qlhoinghi.entity.YeuCau" />
+        </set>
+    </class>
+</hibernate-mapping>
